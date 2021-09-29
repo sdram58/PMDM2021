@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Clicks Counter</string>
+    <string name="click_counter">You have clicked %s times</string>
 </resources>

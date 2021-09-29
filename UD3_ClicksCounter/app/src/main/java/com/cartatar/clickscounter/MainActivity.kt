@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.cartatar.clickscounter.databinding.ActivityMainBinding
 import org.w3c.dom.Text
+import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         btnIncreaseCounter.setOnClickListener(){
             counter++;
-            tvClicksCounter.setText("You have clicked $counter times")
+            tvClicksCounter.text = getString(R.string.click_counter, counter.toString())
         }
     }
 }
