@@ -2,4 +2,8 @@ Java.gitignore
 
 guardar.bat
 
+<<<<<<< HEAD
 guardar.sh
+=======
+guardar.sh
+>>>>>>> 77174cd352d5aea3e1bccf948dd723adafceb782
