@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">IntentActivitySameApp</string>
+    <string name="back">Back</string>
+    <string name="go">Go next activity</string>
+    <string name="name">Set name</string>
+</resources>
