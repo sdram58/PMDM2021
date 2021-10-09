@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SendApp</string>
     <string name="empty_field">This field cannot be empty</string>
+    <string name="title_chooser">Hey choose an app to add</string>
+    <string name="check_error">"Some fields have an error, please check them "</string>
 </resources>

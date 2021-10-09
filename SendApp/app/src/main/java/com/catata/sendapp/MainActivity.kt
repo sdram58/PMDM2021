@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.catata.sendapp.databinding.ActivityMainBinding
 
@@ -38,8 +39,11 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
         binding.btnSend.setOnClickListener {
             cleanErrors()
 
-            if(checkError(binding.etNum1)) return@setOnClickListener
-            if(checkError(binding.etNum2)) return@setOnClickListener
+            if(checkError(binding.etNum1) ||checkError(binding.etNum2)) {
+                Toast.makeText(this, getString(R.string.check_error),Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
 
             val myData = IntArray(2)
              myData[0] = (binding.etNum1.text.toString().toInt())
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
             val shareIntent = Intent.createChooser(//Selector that allow us choose destination app according the action and intent-filter
                 myIntent,
-                "Hey choose an app to uppercase") //Title of selector window
+                getString(R.string.title_chooser)) //Title of selector window
 
             myResultLauncher.launch(shareIntent)
         }
