@@ -21,7 +21,7 @@ data class Superhero(
             listSuper.add(Superhero(5,"Thor", "Marvel", "Thor Odinson", "thor.jpg",LoremIpsum().values.first()))
             listSuper.add(Superhero(6,"Flash", "DC", "Jay Garrick", "flash.png",LoremIpsum().values.first()))
             listSuper.add(Superhero(7,"Superman", "DC", "Clark Kent", "superman.jpg",LoremIpsum().values.first()))
-            listSuper.add(Superhero(8,"Iron Man", "DC", "Tonny Stark", "ironman.jpg",LoremIpsum().values.first()))
+            listSuper.add(Superhero(8,"Iron Man", "Marvel", "Tonny Stark", "ironman.jpg",LoremIpsum().values.first()))
             listSuper.add(Superhero(9,"Green Lantern", "DC", "Alan Scott", "green_lantern.jpg",LoremIpsum().values.first()))
             listSuper.add(Superhero(10,"Wonder Woman", "DC", "Princess Diana", "wonder_woman.jpg",LoremIpsum().values.first()))
             return listSuper
