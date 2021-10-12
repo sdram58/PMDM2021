@@ -48,16 +48,7 @@ class DetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.tvRealName).text  = superHero?.realName
         view.findViewById<TextView>(R.id.tvDescription).text  = superHero?.description
 
-        val imageName = superHero?.photo?.split(".")?.get(0)
-        val id = context?.resources?.getIdentifier(
-            imageName,
-            "raw",
-            context?.packageName
-        )
-
-        val inputStream =context?.resources?.openRawResource(id?:0)
-        val image = BitmapFactory.decodeStream(inputStream)
-        view.findViewById<ImageView>(R.id.ivPoster).setImageBitmap(image)
+        view.findViewById<ImageView>(R.id.ivPoster).setImageBitmap(superHero?.photo?.toBitmap(view.context))
 
     }
 

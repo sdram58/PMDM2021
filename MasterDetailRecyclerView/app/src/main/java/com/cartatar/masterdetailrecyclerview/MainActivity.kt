@@ -13,20 +13,20 @@ class MainActivity : AppCompatActivity(),OnItemClick {
 
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Load ListFragment on its container. (layoutList)
         loadRecyclerView()
 
+        //In the case we were in landscape we load also the DetailFragment in its container. (layoutDetail)
         if (isLandScape()){
+            //We load first SuperHero
             loadDetailFragment(true, Superhero.getFirstID())
         }
-
-
-
     }
+
 
     private fun loadRecyclerView() {
         supportFragmentManager.beginTransaction()
@@ -35,11 +35,15 @@ class MainActivity : AppCompatActivity(),OnItemClick {
             .commit()
     }
 
+
+    /*Work around that let  us to know if we're un landscape mode*/
     private fun isLandScape():Boolean {
         return layoutDetail != null
     }
 
+
     private fun loadDetailFragment(twoPane:Boolean, heroID:Int){
+        //If layoutDetail is null (we're in portrait mode) then we load DetailFragment in layoutList
          val id = layoutDetail?.id?:layoutList.id
 
         supportFragmentManager.beginTransaction()
@@ -48,7 +52,10 @@ class MainActivity : AppCompatActivity(),OnItemClick {
             .commit()
     }
 
+    //Callback implementation
     override fun onItemClick(hero: Superhero) {
+        //We don't nee to use snackbar, which is such as an enhanced Toast where you can implement actions.
+        //But I wanted to introduce it to you
         Snackbar.make(layoutList, "You have clicked on ${hero.superhero}", Snackbar.LENGTH_LONG)
             .setAction("Open"){
 

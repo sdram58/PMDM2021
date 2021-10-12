@@ -6,29 +6,30 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import com.cartatar.masterdetailrecyclerview.OnItemClick
-import com.cartatar.masterdetailrecyclerview.R
 
-import com.cartatar.masterdetailrecyclerview.databinding.FragmentItemBinding
+import com.cartatar.masterdetailrecyclerview.OnItemClick
+
+import com.cartatar.masterdetailrecyclerview.databinding.ListItemBinding
 import com.cartatar.masterdetailrecyclerview.model.Superhero
+import com.cartatar.masterdetailrecyclerview.toBitmap
 
 /**
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].
  * TODO: Replace the implementation with code for your data type.
  */
 class MyItemRecyclerViewAdapter(
-    private val values: List<Superhero>,
+    private val superHeroList: List<Superhero>,
     private val listener:OnItemClick?
 ) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
+    //Creates a ViewHolder for every item of the list (superHeroList)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
-            FragmentItemBinding.inflate(
+            ListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -37,30 +38,29 @@ class MyItemRecyclerViewAdapter(
 
     }
 
+    //In this function customize our ViewHolder with its data depending on the position
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val superhero = values[position]
+
+        val superhero = superHeroList[position]
         holder.tvSuperhero.text = superhero.superhero
         holder.tvRealName.text = superhero.realName
         holder.tvPublisher.text = superhero.publisher
-        val imageName = superhero.photo.split(".")[0]
 
-        val context: Context = holder.ivPoster.context
-        val id = context.resources.getIdentifier(
-            imageName,
-            "raw",
-            context.packageName
-        )
 
-        val inputStream =context.resources.openRawResource(id)
-        val image = BitmapFactory.decodeStream(inputStream)
-        holder.ivPoster.setImageBitmap(image)
+        //We are using an extension toBipmap
+        holder.ivPoster.setImageBitmap(superhero.photo.toBitmap(holder.ivPoster.context))
+
+        //We set the tag with superhero data, in order to obtain its data in the listener
         holder.itemView.tag = superhero
-        holder.itemView.setOnClickListener(holder)
+
+        holder.itemView.setOnClickListener(holder) //Our ViewHolder implements OnClickListener
     }
 
-    override fun getItemCount(): Int = values.size
+    //We need to know the length of the list. It will be the size of out data list
+    override fun getItemCount(): Int = superHeroList.size
 
-    inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    //This inner class contains all view of each item on list_item.xml
+    inner class ViewHolder(binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val tvSuperhero: TextView = binding.tvSuperhero
         val tvRealName: TextView = binding.tvRealName
         val tvPublisher: TextView = binding.tvPublisher
@@ -71,9 +71,11 @@ class MyItemRecyclerViewAdapter(
         }
 
         override fun onClick(v: View?) {
-            val superHero = v?.tag as Superhero
-            //Toast.makeText(v?.context,"You have clicked on ${superHero.superhero}",Toast.LENGTH_SHORT).show()
 
+            //First we recovery de superHero through the tag. Remember we have set it before (onBindViewHolder)
+            val superHero = v?.tag as Superhero
+
+            //later we call our callback with the SuperHero param to inform ListFragment, and then MainActivity
             listener?.onItemClick(superHero)
         }
     }
