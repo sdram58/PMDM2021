@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    tools:context=".LoginFragment">
+    android:background="@color/purple_500"
+    tools:context=".InfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="@string/login_screen"
+        android:text="@string/info_screen"
         android:textColor="@color/white"
         android:textSize="25sp"
 
@@ -31,6 +31,7 @@
         android:layout_marginBottom="36dp"
         android:text="@string/next"
         android:textAllCaps="false"
+        android:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -48,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="@string/user"
+        android:text="@string/email"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_marginEnd="15sp"
@@ -56,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <EditText
-        android:id="@+id/etUser"
+        android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -73,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="@string/pass"
+        android:text="@string/birth_date"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_marginEnd="15sp"
@@ -81,11 +82,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/etPass"
+        android:id="@+id/etBirth_Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="date"
         android:text="Name"
         android:layout_marginStart="15sp"
         android:textColorHint="@color/white"
