@@ -13,8 +13,11 @@
         <action
             android:id="@+id/action_loginFragment_to_infoFragment"
             app:destination="@id/infoFragment"
-            app:popUpTo="@+id/infoFragment"
-            app:popUpToInclusive="true"/>
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+/>
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
@@ -24,7 +27,10 @@
         <action
             android:id="@+id/action_infoFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="login_info"
             app:argType="com.cartatar.navgraph.Login" />
