@@ -38,4 +38,6 @@ data class Login(
             return arrayOfNulls(size)
         }
     }
+
+    constructor() : this("","","","")
 }

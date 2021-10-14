@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.cartatar.navgraph.databinding.FragmentLoginBinding
 import android.R
+import android.app.Activity
+import android.content.Context
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 
@@ -27,13 +29,19 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = (context as Activity)
+        activity.title = "Login"
 
-        navController = Navigation.findNavController(view)
+
 
         binding.btnLoginNext.setOnClickListener{
-            navController.navigate(R.id.action_loginFragment_to_infoFragment,null)
+            val navController = Navigation.findNavController(it)
+            val action = LoginFragmentDirections
+                .actionLoginFragmentToInfoFragment(Login())
+            navController?.navigate(action)
         }
     }
 }
