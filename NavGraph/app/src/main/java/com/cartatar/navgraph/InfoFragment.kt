@@ -23,8 +23,6 @@ class InfoFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentInfoBinding.inflate(inflater,container,false)
 
-        //navController = this.findNavController(R.id.nav_host_fragment)
-        //NavigationUI.setupActionBarWithNavController(this, navController)
 
         return binding.root
     }
