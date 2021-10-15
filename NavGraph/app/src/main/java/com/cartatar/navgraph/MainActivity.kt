@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 
-class MainActivity : AppCompatActivity(),ChangeToolbar {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,12 +20,5 @@ class MainActivity : AppCompatActivity(),ChangeToolbar {
     }
 
 
-    override fun changeToolbar(change: Boolean) {
-       // supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
 
-}
-
-interface ChangeToolbar{
-    fun changeToolbar(change:Boolean)
 }

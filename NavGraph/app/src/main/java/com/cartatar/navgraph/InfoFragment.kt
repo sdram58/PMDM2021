@@ -1,6 +1,5 @@
 package com.cartatar.navgraph
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cartatar.navgraph.databinding.FragmentInfoBinding
 
@@ -46,13 +46,14 @@ class InfoFragment : Fragment() {
         login.email = binding.etEmail.text.toString()
         login.birthDate = binding.etBirthDate.text.toString()
 
+        navController = findNavController()
 
         binding.btnInfoNext.setOnClickListener{
-            navController = Navigation.findNavController(it)
             val action = InfoFragmentDirections
                 .actionInfoFragmentToHomeFragment(login)
             navController?.navigate(action)
-            //navController?.navigate(R.id.action_infoFragment_to_homeFragment)
+            val bundle = Bundle()// Some extra info
+            navController?.navigate(R.id.action_infoFragment_to_homeFragment,bundle)
         }
     }
 }

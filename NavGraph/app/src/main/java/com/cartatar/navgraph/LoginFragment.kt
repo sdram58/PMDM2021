@@ -18,9 +18,9 @@ import androidx.navigation.fragment.findNavController
 
 class LoginFragment : Fragment() {
 
-    lateinit var binding:FragmentLoginBinding
+    private lateinit var binding:FragmentLoginBinding
 
-    var navController:NavController? = null
+    private lateinit var navController:NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +40,10 @@ class LoginFragment : Fragment() {
     //In this function view is R.layout.fragment_login
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+            //We obtain the NavController through findNavigation
+            //navController is  defined as member variable of the fragment
+            navController = findNavController()
+
         binding.btnLoginNext.setOnClickListener{
             //Navigates to InfoFragment
 
@@ -47,9 +51,10 @@ class LoginFragment : Fragment() {
             login.usr = binding.etUser.text.toString()
             login.pass = binding.etPass.text.toString()
 
-            val navController = findNavController()
             val action = LoginFragmentDirections
                 .actionLoginFragmentToInfoFragment(login)
+            //navController.navigate(R.id.action_loginFragment_to_infoFragment)
+            //replace by:
             navController.navigate(action)
         }
     }
