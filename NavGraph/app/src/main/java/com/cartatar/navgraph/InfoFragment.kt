@@ -15,9 +15,11 @@ import com.cartatar.navgraph.databinding.FragmentInfoBinding
 
 class InfoFragment : Fragment() {
 
-    private val args:InfoFragmentArgs by navArgs()
+    private val args: InfoFragmentArgs by navArgs()
 
-    lateinit var binding: FragmentInfoBinding
+    private lateinit var binding: FragmentInfoBinding
+
+    private lateinit var login:Login
 
     var navController: NavController? = null
 
@@ -32,7 +34,7 @@ class InfoFragment : Fragment() {
         actionBar?.hide()
 
         // Inflate the layout for this fragment
-        binding = FragmentInfoBinding.inflate(inflater,container,false)
+        binding = FragmentInfoBinding.inflate(inflater, container, false)
 
 
         return binding.root
@@ -42,18 +44,26 @@ class InfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val login = args.loginInfo
-        login.email = binding.etEmail.text.toString()
-        login.birthDate = binding.etBirthDate.text.toString()
 
         navController = findNavController()
+        //Get the Login passed by LoginFragment
+        login = args.loginInfo //loginInfo is our login_info safe arg
 
-        binding.btnInfoNext.setOnClickListener{
+        binding.btnInfoNext.setOnClickListener {
+
+
+            //Getting Fragment UI info and setting variables.
+            login.email = binding.etEmail.text.toString()
+            login.birthDate = binding.etBirthDate.text.toString()
+
+            //Creating the action object
             val action = InfoFragmentDirections
                 .actionInfoFragmentToHomeFragment(login)
+            //Navigating
             navController?.navigate(action)
-            val bundle = Bundle()// Some extra info
-            navController?.navigate(R.id.action_infoFragment_to_homeFragment,bundle)
+
+
+            //navController?.navigate(R.id.action_infoFragment_to_homeFragment, bundle)
         }
     }
 }
