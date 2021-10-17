@@ -3,7 +3,8 @@
     android:opacity="opaque">
     <item android:drawable="@color/purple_500"/>
     <item>
-        <bitmap android:src="@mipmap/splash"
-            android:gravity="center" />
+        <bitmap android:src="@drawable/splashscreen"
+            android:gravity="center"
+            />
     </item>
 </layer-list>
