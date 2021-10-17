@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/drawer1Fragment"
         android:name="com.cartatar.navigation.Drawer1Fragment"
-        android:label="fragment_drawer1"
+        android:label="fragment drawer 1"
         tools:layout="@layout/fragment_drawer1" />
     <fragment
         android:id="@+id/drawer2Fragment"
         android:name="com.cartatar.navigation.Drawer2Fragment"
-        android:label="fragment_drawer2"
+        android:label="fragment drawer 2"
         tools:layout="@layout/fragment_drawer2" />
     <fragment
         android:id="@+id/drawer3Fragment"
         android:name="com.cartatar.navigation.Drawer3Fragment"
-        android:label="fragment_drawer3"
+        android:label="fragment drawer 3"
         tools:layout="@layout/fragment_drawer3" />
 </navigation>

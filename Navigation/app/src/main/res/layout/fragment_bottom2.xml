@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="25sp"
-        android:text="DRAWER3" />
+        android:text="BOTTOM 2" />
 
 </LinearLayout>
