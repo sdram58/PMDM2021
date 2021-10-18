@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/options_graph"
+    app:startDestination="@id/options1Fragment">
+
+    <fragment
+        android:id="@+id/options1Fragment"
+        android:name="com.cartatar.navigation.Options1Fragment"
+        android:label="Options 1"
+        tools:layout="@layout/fragment_options1" />
+    <fragment
+        android:id="@+id/options2Fragment"
+        android:name="com.cartatar.navigation.Options2Fragment"
+        android:label="Options 2"
+        tools:layout="@layout/fragment_options2" />
+    <fragment
+        android:id="@+id/options3Fragment"
+        android:name="com.cartatar.navigation.Options3Fragment"
+        android:label="Options 3"
+        tools:layout="@layout/fragment_options3" />
+</navigation>

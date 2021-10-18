@@ -6,7 +6,6 @@ import com.cartatar.navigation.databinding.ActivityBottomBinding
 
 import androidx.navigation.fragment.NavHostFragment
 
-import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
 
 
