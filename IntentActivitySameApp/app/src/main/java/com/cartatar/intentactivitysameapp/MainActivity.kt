@@ -37,7 +37,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button.setOnClickListener{ sendShared() }
+        binding.button.setOnClickListener{
+            sendParcelablePerson()
+            //sendShared()
+
+        }
     }
 
 
