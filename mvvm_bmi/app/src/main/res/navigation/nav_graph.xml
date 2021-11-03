@@ -5,9 +5,9 @@
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/BMIFragment">
 
+
     <fragment
         android:id="@+id/BMIFragment"
-        android:name="com.catata.mvvm_body_mass_index.BMIFragment"
-        android:label="fragment_b_m_i"
-        tools:layout="@layout/fragment_b_m_i" />
+        android:name="com.cartatar.body_mass_index.BMIFragment"
+        android:label="BMIFragment" />
 </navigation>
