@@ -93,18 +93,22 @@ class BMIFragment : Fragment() {
 
         }
         bmiCalculatorViewModel.weightError.observe(viewLifecycleOwner){ error ->
-            if(error != "")
+            if(error != "") {
+                binding.tvBMI.text  = ""
                 binding.etWeight.error = error
-            else
+            }else
                 binding.etWeight.error = null
 
         }
         bmiCalculatorViewModel.heightError.observe(viewLifecycleOwner){ error ->
 
-            if(error != "")
+            if(error != "") {
+                binding.tvBMI.text  = ""
                 binding.etHeight.error = error
-            else
+            }else
                 binding.etHeight.error = null
+
+
 
 
         }
