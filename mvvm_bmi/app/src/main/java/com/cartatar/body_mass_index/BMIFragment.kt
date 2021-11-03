@@ -89,9 +89,8 @@ class BMIFragment : Fragment() {
             binding.tvBMI.text = dec.format(newBMI).toString()
             binding.etWeight.error = null
             binding.etHeight.error = null
-
-
         }
+
         bmiCalculatorViewModel.weightError.observe(viewLifecycleOwner){ error ->
             if(error != "") {
                 binding.tvBMI.text  = ""

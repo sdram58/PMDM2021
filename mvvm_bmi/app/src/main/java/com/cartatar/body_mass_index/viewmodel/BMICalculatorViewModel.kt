@@ -2,6 +2,7 @@ package com.cartatar.body_mass_index.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.cartatar.body_mass_index.model.BMICalculator
 import com.cartatar.body_mass_index.model.BMICalculator.CalculatingResult
 import kotlinx.coroutines.*
@@ -21,13 +22,15 @@ class BMICalculatorViewModel: ViewModel() {
 
     fun calculateBMI(weight:Double,height:Double){
 
-        //calculateBMICallBack(weight,height)
-        calculateBMISealed(weight,height)
+        calculateBMICallBack(weight,height)
+        //calculateBMISealed(weight,height)
 
     }
 
     private fun calculateBMISealed(weight: Double, height: Double) {
-        CoroutineScope(Dispatchers.Default).launch {
+
+        //viewModelScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
             loading.postValue(true)
             bmiCalculator.calculateSealed(BMICalculator.Request(weight, height),null).also{ res ->
                 when(res){

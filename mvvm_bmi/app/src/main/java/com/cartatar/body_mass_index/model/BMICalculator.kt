@@ -28,6 +28,14 @@ class BMICalculator{
 
         var error = false
 
+
+
+
+
+        Thread.sleep(5000)
+        println(Thread.currentThread().name)
+
+        //If height is lower than minHeight call ourCallback
         if(minHeight > request.height){
             onWrongHeight?.let {
                 it.invoke("Height should be bigger")
@@ -40,11 +48,6 @@ class BMICalculator{
                 error = true
             }
         }
-
-
-
-        Thread.sleep(5000)
-        println(Thread.currentThread().name)
 
         if(!error){
             //All works fine
