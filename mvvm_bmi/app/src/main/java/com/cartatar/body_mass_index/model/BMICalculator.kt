@@ -1,9 +1,9 @@
 package com.cartatar.body_mass_index.model
 
-import kotlinx.coroutines.*
+
 import java.lang.Exception
 import kotlin.math.pow
-import kotlin.math.sqrt
+
 
 typealias OnWrongHeight = (error:String)->Unit
 typealias OnWrongWeight = (error:String)->Unit
