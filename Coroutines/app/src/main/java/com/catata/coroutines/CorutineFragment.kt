@@ -153,5 +153,4 @@ class CorutineFragment : Fragment() {
     private fun log(text:String) = Log.d(TAG,"${Thread.currentThread().name} --> $text")
 
 
-
 }
