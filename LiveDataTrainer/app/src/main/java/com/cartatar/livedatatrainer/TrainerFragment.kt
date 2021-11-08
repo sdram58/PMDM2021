@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.cartatar.livedatatrainer.databinding.FragmentTrainerBinding
+import com.cartatar.livedatatrainer.viewmodel.TrainerViewModel
 
 
 class TrainerFragment : Fragment() {
@@ -24,6 +26,22 @@ class TrainerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val trainerViewModel = ViewModelProvider(this)[TrainerViewModel::class.java]
+
+        trainerViewModel.exerciseLiveData.observe(viewLifecycleOwner){ imageID ->
+            binding.ivExercise.setImageResource(imageID)
+        }
+
+        trainerViewModel.repetitionLiveData.observe(viewLifecycleOwner) { repetition ->
+            if (repetition.equals("CHANGE")) {
+                binding.tvChange.visibility = View.VISIBLE
+            } else {
+                binding.tvChange.visibility = View.GONE
+            }
+            binding.tvRepetition.text = repetition
+        }
+
     }
 
 
