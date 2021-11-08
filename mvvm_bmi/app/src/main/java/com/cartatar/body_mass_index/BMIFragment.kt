@@ -52,7 +52,7 @@ class BMIFragment : Fragment() {
         val bmiCalculatorViewModel:BMICalculatorViewModel = ViewModelProvider(this)[BMICalculatorViewModel::class.java]
         binding.btnCalculate.setOnClickListener {
 
-            closeKeyBoard(it)
+            closeKeyBoard(it) //Closing soft keyboard
 
             var error = false
             var mHeight = 0.0

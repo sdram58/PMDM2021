@@ -19,12 +19,11 @@ class BMICalculatorViewModel: ViewModel() {
 
 
 
+    //Choose which of the three methods you want to use
     fun calculateBMI(weight:Double,height:Double){
-
         //calculateBMIFunctions(weight,height)
         calculateBMICallBack(weight,height)
         //calculateBMISealed(weight,height)
-
     }
 
     /**********WITH FUNCTIONS *************************/
