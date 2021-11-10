@@ -74,6 +74,14 @@ class BMIFragment : Fragment() {
             else
                 binding.etHeight.error = null
         }
+        bmiCalculatorViewModel.loading.observe(viewLifecycleOwner){
+                isLoading ->
+            if(isLoading)
+                binding.progressCircular.visibility = View.VISIBLE
+            else
+                binding.progressCircular.visibility = View.GONE
+        }
+
     }
 
     private fun closeKeyBoard(view:View){
