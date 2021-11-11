@@ -12,6 +12,7 @@ class CounterViewModel:ViewModel() {
 
     val counterLiveData:MutableLiveData<Int> = MutableLiveData<Int>()
     val counter:Counter = Counter()
+    val isStarted:MutableLiveData<Boolean> = MutableLiveData(false)
 
     var job: Job? = null
 
@@ -19,6 +20,7 @@ class CounterViewModel:ViewModel() {
         if(job!=null && job?.isActive!!) stop()
         else
         job= CoroutineScope(Dispatchers.IO).launch {
+            isStarted.postValue(true)
             counter.count {
                 counterLiveData.postValue(it)
             }
@@ -27,5 +29,6 @@ class CounterViewModel:ViewModel() {
 
     private fun stop(){
         job?.cancel()
+        isStarted.value = false
     }
 }

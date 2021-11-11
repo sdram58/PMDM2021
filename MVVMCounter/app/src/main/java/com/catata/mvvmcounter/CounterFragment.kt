@@ -1,6 +1,7 @@
 package com.catata.mvvmcounter
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,9 +35,25 @@ class CounterFragment : Fragment() {
         }
 
         calculatorVM.counterLiveData.observe(viewLifecycleOwner){
-            binding.tvCounter.text = it.toString()
+            counter->
+            binding.tvCounter.text = counter.toString()
+            log("Thread Main-UI --> ${Thread.currentThread().name}")
         }
 
+        calculatorVM.isStarted.observe(viewLifecycleOwner){
+            isStarted ->
+            if(isStarted)
+                binding.btnStartStop.text = "Stop"
+            else
+                binding.btnStartStop.text = "Start"
+        }
+
+
+
+    }
+
+    private fun log(text:String){
+        Log.d("CHECK", text)
     }
 
 }
