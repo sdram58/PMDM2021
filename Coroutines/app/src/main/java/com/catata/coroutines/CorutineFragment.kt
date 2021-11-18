@@ -76,8 +76,8 @@ class CorutineFragment : Fragment() {
     }
 
     private suspend fun testWithContext(){
-        var resultOne = "resultOne"
-        var resultTwo = "resultTwo"
+        var resultOne = "Android"
+        var resultTwo = "Kotlin"
         log("withContext Before")
         resultOne = withContext(Dispatchers.IO) { function1() }
         resultTwo = withContext(Dispatchers.IO) { function2() }
@@ -100,8 +100,8 @@ class CorutineFragment : Fragment() {
 
     private  fun testLaunch() {
         runBlocking {
-            var resultOne = "resultOne"
-            var resultTwo = "resultTwo"
+            var resultOne = "Android"
+            var resultTwo = "Kotlin"
             log("Launch Before")
             launch(Dispatchers.IO) {resultOne = function1Launch() }
             launch(Dispatchers.IO) {resultTwo = function2Launch() }

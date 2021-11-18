@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Test1Ev</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exit">Are you sure you want to exit?</string>
+    <string name="first_ev_test">Test 1st Ev.</string>
+</resources>

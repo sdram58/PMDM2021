@@ -7,8 +7,8 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.cartatar.body_mass_index"
-        minSdk 23
+        applicationId "com.catata.livedatatrainer"
+        minSdk 24
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -41,16 +41,18 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    def viewModelVersion ="2.4.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModelVersion"
+    def liveDataVersion ="2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$liveDataVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataVersion"
+
     def navigationVersion = "2.3.5"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
 }
