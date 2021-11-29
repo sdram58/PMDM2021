@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.cartatar.sharedpreferences.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
+
         /*val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
         val defaultValue = resources.getInteger(R.integer.saved_high_score_default_key)
         val highScore = sharedPref.getInt(getString(R.string.saved_high_score_key), defaultValue)*/
@@ -34,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             putInt(getString(R.string.name_key), 0)
             apply() //commit()
         }
-
 
     }
 }
