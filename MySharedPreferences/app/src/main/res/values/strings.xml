@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MySharedPreferences</string>
+    <string name="key_preference">com.cartatar.mysharedpreference.NAME</string>
+    <string name="my_shared_file">com.cartatar.mysharedpreferences.MY_SHARED</string>
+</resources>
