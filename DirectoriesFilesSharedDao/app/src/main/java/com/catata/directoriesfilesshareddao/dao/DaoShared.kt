@@ -10,11 +10,16 @@ class DaoShared(val context:Context): IMyDAO {
         var daoShared:DaoShared? = null
 
         fun getInstance(c:Context):DaoShared{
-            return daoShared ?: DaoShared(c)
+            daoShared?.let {} ?: run {
+                daoShared = DaoShared(c)
+            }
+
+            return daoShared!!
         }
     }
 
-    override fun save(people: People) {
+
+    override suspend fun save(people: People, onSaved: OnSaved, onError: OnError?) {
         val sharedPref2 = context.getSharedPreferences(
             context.getString(R.string.my_shared_file),
             Context.MODE_PRIVATE
@@ -24,17 +29,29 @@ class DaoShared(val context:Context): IMyDAO {
                 people.name)
             putString(context.getString(R.string.key_preference_surname),
                 people.surname)
-            apply()
+            if(commit())
+                onSaved(true)
+            else {
+                onError?.let {
+                    it("Data can't be saved on Shared Preferences")
+                }
+            }
         }
     }
 
-    override fun load(): People {
+    override suspend fun load(onLoaded: OnLoaded, onError: OnError?) {
         val sharedPref2 = context.getSharedPreferences(
             context.getString(R.string.my_shared_file),
             Context.MODE_PRIVATE
         )
-        val name = sharedPref2.getString(context.getString(R.string.key_preference_name), "No name")
-        val surname = sharedPref2.getString(context.getString(R.string.key_preference_surname), "No name")
-        return People(name, surname)
+        val name = sharedPref2.getString(context.getString(R.string.key_preference_name), "")
+        val surname = sharedPref2.getString(context.getString(R.string.key_preference_surname), "")
+        if(name == "" || surname==""){
+            onError?.let {
+                onError("Data from shared can't be loaded")
+            }
+        }else{
+            onLoaded(People(name, surname))
+        }
     }
 }

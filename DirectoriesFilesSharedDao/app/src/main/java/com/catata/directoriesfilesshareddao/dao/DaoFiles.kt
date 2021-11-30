@@ -11,11 +11,17 @@ class DaoFiles(val context: Context): IMyDAO {
     companion object{
         var daofile:DaoFiles? = null
 
-        fun getInstance(c:Context):DaoFiles{
-            return daofile ?: DaoFiles(c)
+        fun getInstance(c:Context):DaoFiles {
+
+            daofile?.let {} ?: run {
+                daofile = DaoFiles(c)
+            }
+
+            return daofile!!
         }
+
     }
-    override fun save(people: People) {
+    override suspend fun save(people: People, onSaved: OnSaved, onError: OnError?) {
         if (isExternalStorageWritable()) {
 
             val fileExt = File(context.getExternalFilesDir(null), EXTERNAL_FILE)
@@ -24,10 +30,15 @@ class DaoFiles(val context: Context): IMyDAO {
             oos.writeObject(people)
             oos.close()
             fos.close()
+            onSaved(true)
+        }else{
+            onError?.let {
+                onError("Data can't be saved")
+            }
         }
     }
 
-    override fun load(): People {
+    override suspend fun load(onLoaded: OnLoaded, onError: OnError?) {
         if(isExternalStorageReadable()){
             val fileExt = File(context.getExternalFilesDir(null), EXTERNAL_FILE)
             if(fileExt.exists()){
@@ -36,22 +47,25 @@ class DaoFiles(val context: Context): IMyDAO {
                 val p: People = ois.readObject() as People
                 ois.close()
                 fis.close()
-                return p
+                onLoaded(p)
             }
 
 
+        }else{
+            onError?.let{
+                onError("Data can't be loaded")
+            }
         }
-        return People("No name", "No surname")
     }
 
     // Checks if a volume containing external storage is available
     // for read and write.
-    fun isExternalStorageWritable(): Boolean {
+    private fun isExternalStorageWritable(): Boolean {
         return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
     }
 
     // Checks if a volume containing external storage is available to at least read.
-    fun isExternalStorageReadable(): Boolean {
+    private fun isExternalStorageReadable(): Boolean {
         return Environment.getExternalStorageState() in
                 setOf(Environment.MEDIA_MOUNTED, Environment.MEDIA_MOUNTED_READ_ONLY)
     }

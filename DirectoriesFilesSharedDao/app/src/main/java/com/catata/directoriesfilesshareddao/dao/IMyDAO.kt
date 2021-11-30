@@ -1,9 +1,11 @@
 package com.catata.directoriesfilesshareddao.dao
 
 import com.catata.directoriesfilesshareddao.model.People
-
+typealias OnError = (error:String)->Unit
+typealias OnSaved = (isSaved:Boolean)->Unit
+typealias OnLoaded = (people:People)->Unit
 
 interface IMyDAO {
-    fun save(people: People):Unit
-    fun load(): People
+    suspend fun save(people: People, onSaved: OnSaved, onError: OnError?):Unit
+    suspend fun load(onLoaded: OnLoaded,onError: OnError?): Unit
 }
