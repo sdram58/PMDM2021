@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DirectoriesFiles</string>
+    <string name="my_shared_file">com.catata.directoriesfiles</string>
+    <string name="key_preference">key_name</string>
+    <string name="key_preference_surname">Surname_KEY</string>
+    <string name="key_preference_name">name_KEY</string>
+</resources>
