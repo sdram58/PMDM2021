@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import com.cartatar.sharedsettings.databinding.FragmentMainBinding
 
@@ -41,12 +42,13 @@ class MainFragment : Fragment() {
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
 
-        val pref = sharedPreferences.all["feedback"]
-        pref
+
+
 
         binding.btnChange.setOnClickListener {
             binding.tvInfo.text = sharedPreferences.getString("feedback","No feed")
         }
+
     }
 
 
