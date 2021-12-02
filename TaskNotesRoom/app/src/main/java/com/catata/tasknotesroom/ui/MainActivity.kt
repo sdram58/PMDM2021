@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,10 +33,36 @@ class MainActivity : AppCompatActivity() {
 
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
 
+        taskViewModel.getAllTasks()
+
         taskViewModel.taskListLD.observe(this){
             tasks.clear()
             tasks.addAll(it)
             recyclerView.adapter?.notifyDataSetChanged()
+        }
+        taskViewModel.updateTaskLD.observe(this){ taskUpdated ->
+            if(taskUpdated == null){
+                showMessage("Error updating task")
+            }
+        }
+
+        taskViewModel.deleteTaskLD.observe(this){ id ->
+            if(id != -1){
+                val task = tasks.filter {
+                    it.id == id
+                }[0]
+                val pos = tasks.indexOf(task)
+                tasks.removeAt(pos)
+                recyclerView.adapter?.notifyItemRemoved(pos)
+            }else{
+                showMessage("Error deleting task")
+            }
+        }
+
+        taskViewModel.insertTaskLD.observe(this){
+            tasks.add(it)
+            recyclerView.adapter?.notifyItemInserted(tasks.size)
+
         }
 
         binding.btnAddTask.setOnClickListener {
@@ -43,6 +70,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         setUpRecyclerView()
+    }
+
+    private fun showMessage(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
 

@@ -16,39 +16,50 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
     var myDao = Room.databaseBuilder(context, TasksDatabase::class.java, "tasks-db").build().taskDao()
 
     val taskListLD:MutableLiveData<MutableList<TaskEntity>> = MutableLiveData()
+    val updateTaskLD:MutableLiveData<TaskEntity?> = MutableLiveData()
+    val deleteTaskLD:MutableLiveData<Int> = MutableLiveData()
+    val insertTaskLD:MutableLiveData<TaskEntity> = MutableLiveData()
 
-    var tasks = mutableListOf<TaskEntity>()
-    init {
+    lateinit var tasks :MutableList<TaskEntity>
+
+
+    fun getAllTasks(){
         CoroutineScope(Dispatchers.IO).launch {
             tasks = myDao.getAllTasks()
             taskListLD.postValue(tasks)
         }
+
     }
     fun add(task:String) {
         CoroutineScope(Dispatchers.IO).launch {
             val id = myDao.addTask(TaskEntity(name = task))
             val recoveryTask = myDao.getTaskById(id)
-            tasks.add(recoveryTask)
-            taskListLD.postValue(tasks)
+            insertTaskLD.postValue(recoveryTask)
         }
     }
 
     fun delete(task:TaskEntity){
         CoroutineScope(Dispatchers.IO).launch {
-            val position = tasks.indexOf(task)
-            myDao.deleteTask(task)
-            tasks.remove(task)
 
-            taskListLD.postValue(tasks)
+            val res = myDao.deleteTask(task)
+            if(res>0)
+                deleteTaskLD.postValue(task.id)
+            else{
+                deleteTaskLD.postValue(-1)
+            }
+
+
         }
     }
 
     fun update(task:TaskEntity){
         CoroutineScope(Dispatchers.IO).launch {
-            val pos = tasks.indexOf(task)
-            tasks[pos].isDone = !tasks[pos].isDone
-            myDao.updateTask(tasks[pos])
-            taskListLD.postValue(tasks)
+            task.isDone = !task.isDone
+            val res = myDao.updateTask(task)
+            if(res>0)
+                updateTaskLD.postValue(task)
+            else
+                updateTaskLD.postValue(null)
         }
     }
 }
