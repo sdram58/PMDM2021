@@ -3,7 +3,7 @@ package com.catata.tasknotesroom.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
+import com.catata.tasknotesroom.database.MyDao
 import com.catata.tasknotesroom.database.TasksDatabase
 import com.catata.tasknotesroom.database.entities.TaskEntity
 import kotlinx.coroutines.CoroutineScope
@@ -13,20 +13,17 @@ import kotlinx.coroutines.launch
 class TaskViewModel(application: Application): AndroidViewModel(application) {
     val context = application
 
-    var myDao = Room.databaseBuilder(context, TasksDatabase::class.java, "tasks-db").build().taskDao()
+    var myDao:MyDao = TasksDatabase.getInstance(context)
 
     val taskListLD:MutableLiveData<MutableList<TaskEntity>> = MutableLiveData()
     val updateTaskLD:MutableLiveData<TaskEntity?> = MutableLiveData()
     val deleteTaskLD:MutableLiveData<Int> = MutableLiveData()
     val insertTaskLD:MutableLiveData<TaskEntity> = MutableLiveData()
 
-    lateinit var tasks :MutableList<TaskEntity>
-
 
     fun getAllTasks(){
         CoroutineScope(Dispatchers.IO).launch {
-            tasks = myDao.getAllTasks()
-            taskListLD.postValue(tasks)
+            taskListLD.postValue(myDao.getAllTasks())
         }
 
     }

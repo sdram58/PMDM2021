@@ -104,11 +104,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun clearFocus(){
+    private fun clearFocus(){
         binding.etTask.setText("")
     }
 
-    fun Context.hideKeyboard() {
+    private fun Context.hideKeyboard() {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }

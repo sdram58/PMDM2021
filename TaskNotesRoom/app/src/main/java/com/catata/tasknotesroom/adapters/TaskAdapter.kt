@@ -24,10 +24,6 @@ class TasksAdapter(
         holder.bind(item, checkTask, deleteTask)
     }
 
-    fun addTask(task: TaskEntity){
-
-    }
-
 
     override fun getItemCount() = tasks.size
 
