@@ -47,8 +47,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "com.google.android.material:material:$material_version"
 
-
-
     //RecycleView
     implementation("androidx.recyclerview:recyclerview:$recycler_version")
 
