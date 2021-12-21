@@ -7,14 +7,14 @@
         android:title="Colors">
 
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="#FF0000"
             android:entries="@array/color"
             android:entryValues="@array/cod_color"
             android:key="background_color"
             android:title="Background color" />
 
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="#000000"
             android:entries="@array/color"
             android:entryValues="@array/cod_color"
             android:key="font_color"

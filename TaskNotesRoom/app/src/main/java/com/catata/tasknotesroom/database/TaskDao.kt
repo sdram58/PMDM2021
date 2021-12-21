@@ -15,7 +15,7 @@ interface TaskDao:MyDao {
     override fun getTaskById(id: Long): TaskEntity
 
     @Update
-    override fun updateTask(taskEntity: TaskEntity):Int
+    override fun updateTask(taskEntity: TaskEntity):Int //Return Value is Number of affected row.
 
     @Delete
     override fun deleteTask(taskEntity: TaskEntity):Int
