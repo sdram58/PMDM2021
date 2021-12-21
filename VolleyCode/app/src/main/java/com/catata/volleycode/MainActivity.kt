@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
         //jsonObject Request
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET,
+            Request.Method.POST,
             url,
             jsonObject,
             { response ->
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
         //jsonArrayRequest Request
         val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET,
+            Request.Method.POST,
             url,
             jsonArray,
             { response ->
