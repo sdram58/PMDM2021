@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             setMediaController(mediaController)
 
             setVideoPath(path)
-            requestFocus()
+            //requestFocus()
 
             /*setOnPreparedListener { mp ->
                 mp.isLooping = true

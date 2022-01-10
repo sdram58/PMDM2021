@@ -6,10 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.catata.mediaplayerexample.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -35,9 +31,6 @@ class MainActivity : AppCompatActivity() {
                 // Next, call start() method on mediaPlayer to start playing the music.
 
                 mediaPlayer!!.start()
-
-
-
             }
             R.id.btnPause -> if (mediaPlayer != null) {
                 // Here, call pause() method on mediaPlayer to pause the music.
