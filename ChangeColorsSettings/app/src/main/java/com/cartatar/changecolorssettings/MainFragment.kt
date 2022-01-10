@@ -74,8 +74,6 @@ class MainFragment : Fragment() {
 
     private fun changeBackgroundColor(color:String) {
         binding.root.setBackgroundColor(parseColor(color))
-
-
     }
 
 

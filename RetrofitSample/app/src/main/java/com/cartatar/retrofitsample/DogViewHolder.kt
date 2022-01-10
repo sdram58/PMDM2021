@@ -3,7 +3,7 @@ package com.cartatar.retrofitsample
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.cartatar.retrofitsample.databinding.ItemDogBinding
-import com.squareup.picasso.Picasso
+
 import fromUrl
 
 class DogViewHolder(view: View): RecyclerView.ViewHolder(view) {
