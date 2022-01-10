@@ -14,10 +14,8 @@ import android.media.MediaPlayer.OnPreparedListener
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
-    //val urlVideo = "http://techslides.com/demos/sample-videos/small.mp4"
-    //val urlVideo = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
     val urlVideo = "https://sdram58.github.io/apuntesPMDM/unidades/UD8/assets/bola_drac.mp4"
-    //val urlVideo = "http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)

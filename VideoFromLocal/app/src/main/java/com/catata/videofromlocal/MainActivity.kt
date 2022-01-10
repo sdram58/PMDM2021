@@ -19,9 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
-        mediaPlayer = MediaPlayer()
+
         val path = "android.resource://" + packageName + "/" + R.raw.bola_drac
-        mediaPlayer.setDataSource(path)
 
         with(binding.vvVideo){
 
@@ -32,10 +31,11 @@ class MainActivity : AppCompatActivity() {
             setVideoPath(path)
             //requestFocus()
 
-            /*setOnPreparedListener { mp ->
+            setOnPreparedListener { mp ->
                 mp.isLooping = true
                 mp.start()
-            }*/
+
+            }
         }
 
         binding.btnPlay.setOnClickListener{
