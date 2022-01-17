@@ -50,10 +50,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.OnN
         val mainOptions = listOf(R.id.option1, R.id.option4)
         val menu = navView.menu
         val secOptions = listOf(R.id.option2, R.id.option3, R.id.option5, R.id.option6)
-        /*for(option in mainOptions){
+        for(option in mainOptions){
             val tools = menu.findItem(option)
 
-            tools.icon.setTint(getColor(R.color.black))
+            //tools.icon.setTint(getColor(R.color.black))
 
             val s = SpannableString(tools.title)
             s.setSpan(TextAppearanceSpan(this, R.style.MainOptionStyle), 0, s.length, 0)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.OnN
             val s = SpannableString(tools.title)
             s.setSpan(TextAppearanceSpan(this, R.style.SecondaryOptionStyle), 0, s.length, 0)
             tools.title = s
-        }*/
+        }
 
 
         val mActionBarDrawerToggle = ActionBarDrawerToggle(this,

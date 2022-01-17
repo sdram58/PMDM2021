@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.RemoteInput
 import com.catata.notificationsexample.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
 import kotlin.random.Random
@@ -41,8 +40,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sendNotification() {
-        makeNotificationChannel()
-        makeNotificaton()
+        CoroutineScope(Dispatchers.Default).launch {
+            delay(6000L)
+            makeNotificationChannel()
+            makeNotificaton()
+        }
     }
 
 
@@ -73,22 +75,25 @@ class MainActivity : AppCompatActivity() {
 
         with(builder){
             setSmallIcon(R.drawable.ic_baseline_access_alarm)
-            setContentTitle("Notification Example ${Math.random()}")
+            setContentTitle("Notification Example")
             setContentText("This is my notification")
             setStyle(NotificationCompat.BigTextStyle()
                 .bigText("This is a long text that can't it into a single line. This is a long text that can't it into a single line. This is a long text that can't it into a single line. This is a long text that can't it into a single line"))
 
 
-            color = Color.BLUE
-            priority = NotificationCompat.PRIORITY_MAX
+            color = Color.RED
+            priority = NotificationCompat.PRIORITY_DEFAULT
 
             //1 sec on 1 sec off
             setLights(Color.MAGENTA, 1000, 1000)
 
             //1 sec on 1 sec off 1 sec on 1 sec off
             setVibrate(longArrayOf(1000, 1000, 1000, 1000))
+
             //setSound()
             setDefaults(Notification.DEFAULT_SOUND)
+
+            //When we click on the notification
             setContentIntent(pendingIntent)
 
             setVisibility(VISIBILITY_PUBLIC)
@@ -97,22 +102,23 @@ class MainActivity : AppCompatActivity() {
             addAction(R.drawable.ic_no, "No", pendingIntentNo)
 
 
-            //setFullScreenIntent(pendingIntent, true)
+            setFullScreenIntent(pendingIntent, true)
 
             //setTimeoutAfter(5000L) //cancels notification after 5 sec
-            //setAutoCancel(true)
+            setAutoCancel(true)
         }
 
         val notificationManagerCompat = NotificationManagerCompat.from(
             this)
 
-        notificationManagerCompat.notify(NOTIFICATION_ID, builder.build())
+        //Launch the notification
+        notificationManagerCompat.notify(NOTIFICATION_ID , builder.build())
     }
 
     private fun makePendingIntent():PendingIntent {
         val intent = Intent(this, NotificationActivity::class.java)
 
-        return PendingIntent.getActivity(this, PENDING_REQUEST, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        return PendingIntent.getActivity(this, PENDING_REQUEST, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     private fun makePendingIntentYes():PendingIntent {

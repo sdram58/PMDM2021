@@ -2,6 +2,7 @@ package com.catata.notificationsexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.NotificationManagerCompat
 import com.catata.notificationsexample.databinding.ActivityYesBinding
 
 class YesActivity : AppCompatActivity() {
@@ -14,6 +15,9 @@ class YesActivity : AppCompatActivity() {
 
         intent.getStringExtra(YES_EXTRA_KEY)?.let {
             binding.tvYes.text = it
+        }
+        NotificationManagerCompat.from(this).apply {
+            cancel(NOTIFICATION_ID)
         }
     }
 }

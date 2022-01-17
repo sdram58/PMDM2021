@@ -11,8 +11,6 @@ class NotificationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_notification)
         title = "Notification activity"
 
-        NotificationManagerCompat.from(this).apply {
-            cancel(NOTIFICATION_ID)
-        }
+
     }
 }
