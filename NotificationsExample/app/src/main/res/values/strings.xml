@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NotificationsExample</string>
+    <string name="reply_label">reply</string>
+    <string name="label">Reply Notification</string>
+</resources>
